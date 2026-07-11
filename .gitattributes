@@ -1,2 +1,12 @@
+# Policy exports produced by the IntuneManagement tool (WINDOWS/, MACOS/,
+# WINDOWS365/ under */IntuneManagement/<Category>/) are UTF-16LE with a BOM
+# - that's what the export tool writes and what Intune re-imports cleanly.
 /**/IntuneManagement/**/* diff working-tree-encoding=UTF-16LE-BOM eol=CRLF
+
+# NativeImport/ trees (currently under MACOS/ and WINDOWS365/) hold the same
+# policies re-exported in the trimmed shape used for direct Graph import,
+# which is UTF-8. This rule is intentionally scoped to NativeImport/ only -
+# do not remove it as "dead": both MACOS/NativeImport and WINDOWS365/NativeImport
+# contain real, tracked *.json files it applies to. Verify with, e.g.:
+#   git check-attr -a "MACOS/NativeImport/<any file>.json"
 /**/NativeImport/*.json diff working-tree-encoding=UTF-8 eol=CRLF
